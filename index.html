@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de LED</title>
+</head>
+<body>
+  <h1>Control de LED desde GitHub Pages</h1>
+  <button onclick="sendRequest('on')">Encender LED</button>
+  <button onclick="sendRequest('off')">Apagar LED</button>
+  <script>
+    const esp32Ip = 'http://<ESP32_IP>'; // Reemplaza <ESP32_IP> con la IP de tu ESP32
+    async function sendRequest(action) {
+      try {
+        const response = await fetch(`${esp32Ip}/${action}`);
+        const result = await response.text();
+        alert(result);
+      } catch (error) {
+        alert("Error: No se pudo conectar al servidor ESP32");
+      }
+    }
+  </script>
+</body>
+</html>
